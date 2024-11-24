@@ -48,18 +48,38 @@ const Hero = () => {
                 </button>
               </div>
               <div className="flex gap-4 pt-1">
-                <Link className="p-2  border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300" href="/">
+                <a
+                  className="p-2 border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300"
+                  href="https://github.com/NasimRanaFeroz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FaGithub />
-                </Link>
-                <Link className="p-2  border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300" href="/">
-                  <FaLinkedin/>
-                </Link>
-                <Link className="p-2  border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300" href="/">
+                </a>
+                <a
+                  className="p-2  border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300"
+                  href="https://www.linkedin.com/in/nasim-rana-feroz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaLinkedin />
+                </a>
+                <a
+                  className="p-2  border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300"
+                  href="/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <SiGmail />
-                </Link>
-                <Link className="p-2  border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300" href="/">
+                </a>
+                <a
+                  className="p-2  border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300"
+                  href="https://www.instagram.com/nasim_rana_feroz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <AiFillInstagram />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
