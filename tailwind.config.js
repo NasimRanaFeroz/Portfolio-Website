@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  mode: "jit",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,11 +8,15 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      backdropBlur: {
+        'xs': '2px', 
+      },
+      backgroundImage: {
+        rain: "url('/images/bg-rain.png')",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("daisyui"),
+  ],
 };
