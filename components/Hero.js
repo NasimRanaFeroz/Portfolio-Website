@@ -66,8 +66,7 @@ const Hero = () => {
                 </a>
                 <a
                   className="p-2  border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300"
-                  href="/"
-                  target="_blank"
+                  href="/contact"
                   rel="noopener noreferrer"
                 >
                   <SiGmail />
