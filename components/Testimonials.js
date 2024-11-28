@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
 // Testimonials data
@@ -43,9 +43,12 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <div>
+      <div className="flex justify-center lg:pt-7 text-2xl font-bold bg-[#050526]">
+        <p>Testimonials</p>
+      </div>
       <AnimatedTestimonials testimonials={testimonials} />
     </div>
-  )
-}
+  );
+};
 
 export default Testimonials;

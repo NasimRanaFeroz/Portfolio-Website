@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-transparent px-20">
+    <div className="navbar bg-transparent px-4 md:px-10 lg:px-20">
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -60,12 +60,12 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link
-          href="/"
-          className=" text-blue-950 text-2xl font-bold"
-        >
+        <div className=" hidden sm:block">   
+        <p className=" text-blue-950 text-base md:text-xl md:pl-3 sm:pl-2 lg:text-2xl font-bold">
           Nasim Rana Feroz
-        </Link>
+        </p>
+        </div>
+        
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-blue-950">

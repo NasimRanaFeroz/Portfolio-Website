@@ -8,7 +8,7 @@ const page = () => {
     <div>
       <Hero />
       <Techno />
-      <Testimonials/>
+      <Testimonials />
     </div>
   );
 };
