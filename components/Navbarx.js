@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 
-const Navbar = () => {
+const Navbarx = () => {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const audioRef = useRef(null);
 
@@ -19,13 +19,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-transparent px-4 md:px-10 lg:px-20">
+    <div className="navbar bg-[#0b1320] px-4 sm:px-10 lg:px-20">
       <div className="navbar-start">
         <div className="dropdown">
           <div
             tabIndex={0}
             role="button"
-            className="btn glass btn-ghost lg:hidden bg-blue-700 hover:bg-blue-600"
+            className="btn glass btn-ghost lg:hidden bg-[#1B263B] hover:bg-[#0f244b]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base rounded-box z-[1] mt-3 w-52 p-2 shadow text-blue-900"
+            className="menu menu-sm dropdown-content bg-[#1B263B] rounded-box z-[1] mt-3 w-52 p-2 shadow text-white"
           >
             <li className="hover:bg-blue-400 transition duration-300 rounded-md">
               <Link href="/">Home</Link>
@@ -60,15 +60,14 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className=" hidden sm:block">   
-        <p className=" text-black text-base md:text-xl md:pl-3 sm:pl-2 lg:text-2xl font-bold">
-          Nasim Rana Feroz
-        </p>
+        <div className=" hidden sm:block">
+          <p className=" text-white text-base sm:text-xl md:pl-3 sm:pl-2 lg:text-2xl font-bold">
+            Nasim Rana Feroz
+          </p>
         </div>
-        
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 text-black">
+        <ul className="menu menu-horizontal px-1 text-white">
           <li className="hover:bg-blue-400 transition duration-300 rounded-md">
             <Link href="/">Home</Link>
           </li>
@@ -90,7 +89,7 @@ const Navbar = () => {
           checked={isMusicPlaying}
           onChange={toggleMusic}
         />
-        <p className="text-black">Music</p>
+        <p className="text-white">Music</p>
       </div>
 
       <audio ref={audioRef} src="/audios/suzume.mp3" loop />
@@ -98,4 +97,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbarx;

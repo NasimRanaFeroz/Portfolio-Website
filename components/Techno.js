@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { BackgroundBeams } from "@/components/ui/background-beams";
 
 const Techno = () => {
   return (
-    <div className="bg-[#050526]">
+    <div className="bg-[#1B263B]">
       <div className="pt-10">
         <div className="text-center">
           <p className="text-2xl p-2 font-bold">Technologies</p>
@@ -14,7 +13,7 @@ const Techno = () => {
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 md:gap-4 px-6 md:px-14 lg:px-20 py-4 pb-16">
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#090934] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/JS-logo.png"
@@ -31,7 +30,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/TS.png"
@@ -48,7 +47,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/react.png"
@@ -65,10 +64,10 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
-                src="/images/icon/next.png"
+                src="/images/icon/nextJS.jpg"
                 alt="JS"
                 width={40}
                 height={40}
@@ -82,7 +81,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/node.svg"
@@ -99,7 +98,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/ex.png"
@@ -116,7 +115,7 @@ const Techno = () => {
               </div>{" "}
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/py.png"
@@ -134,7 +133,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/git.png"
@@ -152,10 +151,10 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
-                src="/images/icon/gh.png"
+                src="/images/icon/ghub.png"
                 alt="JS"
                 width={40}
                 height={40}
@@ -169,7 +168,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/tw.png"
@@ -187,7 +186,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/bs.png"
@@ -204,7 +203,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/figma.png"
@@ -221,7 +220,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex-col items-center justify-center">
               <div className="flex items-center justify-center pl-2">
                 <Image
@@ -240,7 +239,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/MongoDB.png"
@@ -257,7 +256,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/jwt.png"
@@ -274,7 +273,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/zod.png"
@@ -291,7 +290,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/stripe.png"
@@ -308,7 +307,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/form.svg"
@@ -325,7 +324,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/flask.png"
@@ -342,7 +341,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/sb.png"
@@ -359,7 +358,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/sql.svg"
@@ -376,7 +375,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/fb.png"
@@ -393,7 +392,7 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
                 src="/images/icon/html.png"
@@ -410,10 +409,10 @@ const Techno = () => {
               </div>
             </div>
           </div>
-          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#070735] hover:bg-blue-950 transition duration-300">
+          <div className="flex rounded-md py-1 gap-1 sm:gap-2 bg-[#202b43ea] hover:bg-[#0e142ad8] shadow-2xl transition duration-300">
             <div className="flex items-center justify-center pl-2">
               <Image
-                src="/images/icon/css.png"
+                src="/images/icon/css3.png"
                 alt="JS"
                 width={40}
                 height={40}

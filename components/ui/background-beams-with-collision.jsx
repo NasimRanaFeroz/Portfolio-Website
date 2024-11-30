@@ -64,7 +64,7 @@ export const BackgroundBeamsWithCollision = ({ children, className }) => {
     <div
       ref={parentRef}
       className={cn(
-        "h-96 md:h-[40rem] sm:h-[30rem] bg-[url('/images/bg-rain.png')] bg-cover bg-center relative flex items-center w-full justify-center overflow-hidden",
+        "h-auto sm:h-[40rem] bg-[url('/images/bg-rain.png')] bg-cover bg-center relative flex items-center w-full justify-center overflow-hidden",
         className
       )}
     >

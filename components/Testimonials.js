@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
@@ -43,7 +45,7 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <div>
-      <div className="flex justify-center lg:pt-7 text-2xl font-bold bg-[#050526]">
+      <div className="flex justify-center lg:pt-7 text-2xl font-bold bg-[#1B263B]">
         <p>Testimonials</p>
       </div>
       <AnimatedTestimonials testimonials={testimonials} />
