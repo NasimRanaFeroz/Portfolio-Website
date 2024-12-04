@@ -1,37 +1,54 @@
 "use client";
+
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
   const [active, setActive] = useState(0);
+  const [rotateY, setRotateY] = useState([]);
 
-  const handleNext = () => {
+  // Precompute random rotations
+  useEffect(() => {
+    const randomRotations = testimonials.map(
+      () => Math.floor(Math.random() * 21) - 10
+    );
+    setRotateY(randomRotations);
+  }, [testimonials]);
+
+  // Handle Next slide
+  const handleNext = useCallback(() => {
     setActive((prev) => (prev + 1) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
-  const handlePrev = () => {
+  // Handle Previous slide
+  const handlePrev = useCallback(() => {
     setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
-  const isActive = (index) => {
-    return index === active;
-  };
-
+  // Autoplay logic
   useEffect(() => {
     if (autoplay) {
       const interval = setInterval(handleNext, 5000);
       return () => clearInterval(interval);
     }
-  }, [autoplay]);
+  }, [autoplay, handleNext]);
 
-  const randomRotateY = () => {
-    return Math.floor(Math.random() * 21) - 10;
-  };
+  // Render nothing if no testimonials are available
+  if (!testimonials || testimonials.length === 0) {
+    return (
+      <div className="text-center text-white">No testimonials available.</div>
+    );
+  }
+
+  // Determine if a testimonial is active
+  const isActive = (index) => index === active;
+
   return (
-    <div className="w-full mx-auto antialiased font-sans bg-[#1B263B] px-12 sm:px-28 md:px-20 lg:px-44 xl:px-64 py-14">
-      <div className="relative grid grid-cols-1 md:grid-cols-2  gap-20">
+    <div className="w-full mx-auto antialiased font-sans bg-[#0b1727] px-12 sm:px-28 md:px-20 lg:px-44 xl:px-64 py-14">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
+        {/* Image Section */}
         <div>
           <div className="relative h-80 w-full">
             <AnimatePresence>
@@ -42,13 +59,13 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
                     opacity: 0,
                     scale: 0.9,
                     z: -100,
-                    rotate: randomRotateY(),
+                    rotate: rotateY[index] || 0,
                   }}
                   animate={{
                     opacity: isActive(index) ? 1 : 0.7,
                     scale: isActive(index) ? 1 : 0.95,
                     z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : randomRotateY(),
+                    rotate: isActive(index) ? 0 : rotateY[index] || 0,
                     zIndex: isActive(index)
                       ? 999
                       : testimonials.length + 2 - index,
@@ -58,7 +75,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
                     opacity: 0,
                     scale: 0.9,
                     z: 100,
-                    rotate: randomRotateY(),
+                    rotate: rotateY[index] || 0,
                   }}
                   transition={{
                     duration: 0.4,
@@ -71,7 +88,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
                     alt={testimonial.name}
                     width={500}
                     height={500}
-                    draggable={false}
+                    priority
                     className="h-full w-full rounded-3xl object-cover object-center"
                   />
                 </motion.div>
@@ -79,6 +96,8 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
             </AnimatePresence>
           </div>
         </div>
+
+        {/* Content Section */}
         <div className="flex justify-between flex-col py-4">
           <motion.div
             key={active}
@@ -131,6 +150,8 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
               ))}
             </motion.p>
           </motion.div>
+
+          {/* Navigation Buttons */}
           <div className="flex gap-4 pt-12 md:pt-0">
             <button
               onClick={handlePrev}

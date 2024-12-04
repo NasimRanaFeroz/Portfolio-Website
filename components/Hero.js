@@ -27,11 +27,11 @@ const Hero = () => {
                 alt="Nasim"
                 width={280}
                 height={280}
-                className="rounded-full hover:shadow-2xl  border-sky-400 shadow-sm hover:shadow-sky-500 transition duration-300"
+                className="rounded-full hover:shadow-2xl hover:-translate-y-1  border-sky-400 shadow-sm hover:shadow-sky-500 transition duration-300"
               />
             </div>
           </div>
-          <div className="grid rounded-lg m-3 sm:ml-4 md:ml-2  grid-cols-1 gap-5 py-4 sm:py-6 px-8 md:w-3/6  mb-4 lg:px-10 xl:px-16 backdrop-blur-xs hover:backdrop-blur-sm shadow-xl transition-shadow duration-300 hover:shadow-2xl">
+          <div className="grid rounded-lg m-3 sm:ml-4 md:ml-2  grid-cols-1 gap-5 py-4 sm:py-6 px-8 md:w-3/6  mb-4 lg:px-10 xl:px-16 backdrop-blur-sm shadow-xl transition-shadow duration-300 hover:shadow-2xl">
             <div className="flex-col">
               <p className="text-xl md:text-2xl lg:text-3xl text-black">
                 Hi! I&apos;m Nasim!
@@ -54,14 +54,14 @@ const Hero = () => {
                 <IoHome className="mr-2" /> Rangpur, Bangladesh
               </p>
             </div>
-            <div className="text-sm lg:text-lg text-black flex gap-2 md:gap-4 lg:gap-6">
+            <div className="text-sm lg:text-lg text-black flex gap-1 sm:gap-1 md:gap-4 lg:gap-6">
               <div>
                 <button className="flex items-center p-2 space-x-1 border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300">
                   <p>Resume</p>
                   <FaFileDownload />
                 </button>
               </div>
-              <div className="flex gap-1 md:gap-2 lg:gap-3 pt-1">
+              <div className="flex sm:gap-1 md:gap-2 lg:gap-3 pt-1">
                 <a
                   className="p-2 border-sky-400 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-500 transition duration-300"
                   href="https://github.com/NasimRanaFeroz"
