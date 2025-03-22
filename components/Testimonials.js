@@ -43,7 +43,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div className="py-10 md:py-14 bg-[#0b1727]">
+    <div className="pt-10 md:pt-14 pb-0 bg-[#0b1727]">
       <div className="flex justify-center pt-6 text-2xl font-bold ">
         <p>Testimonials</p>
       </div>

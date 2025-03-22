@@ -61,10 +61,11 @@ export const BackgroundBeamsWithCollision = ({ children, className }) => {
   ];
 
   return (
+    //bg-[url('/images/bg-rain.png')] bg-cover bg-center
     <div
       ref={parentRef}
       className={cn(
-        "h-screen sm:h-[40rem] bg-[url('/images/bg-rain.png')] bg-cover bg-center relative flex items-center w-full justify-center overflow-hidden",
+        "h-screen sm:h-[40rem] bg-gradient-to-b from-[#0b1727] to-[#0f1f32] relative flex items-center w-full justify-center overflow-hidden",
         className
       )}
     >

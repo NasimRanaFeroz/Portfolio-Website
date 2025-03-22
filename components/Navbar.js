@@ -2,6 +2,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FaHome, FaUser, FaCode, FaEnvelope, FaMusic } from "react-icons/fa";
 
 const Navbar = () => {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
@@ -14,17 +15,17 @@ const Navbar = () => {
         audioRef.current.pause();
       } else {
         audioRef.current.play();
-        audioRef.current.volume = 0.3;
+        audioRef.current.volume = 0.1;
       }
       setIsMusicPlaying(!isMusicPlaying);
     }
   };
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Projects", path: "/projects" },
-    { name: "Contact me", path: "/contact" },
+    { name: "Home", path: "/", icon: <FaHome className="mr-2" /> },
+    { name: "About", path: "/about", icon: <FaUser className="mr-2" /> },
+    { name: "Projects", path: "/projects", icon: <FaCode className="mr-2" /> },
+    { name: "Contact me", path: "/contact", icon: <FaEnvelope className="mr-2" /> },
   ];
 
   const menuVariants = {
@@ -75,7 +76,7 @@ const Navbar = () => {
 
   return (
     <motion.div 
-      className="navbar bg-transparent px-4 md:px-10 lg:px-20 z-50"
+      className="navbar bg-gradient-to-r from-[#0b1320] to-[#162032] text-blue-50 border-b border-sky-900/40 px-4 sm:px-10 lg:px-20 z-50 sticky top-0"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -85,9 +86,12 @@ const Navbar = () => {
           <motion.div
             tabIndex={0}
             role="button"
-            className="btn glass btn-ghost lg:hidden bg-blue-700 hover:bg-blue-600"
+            className="btn glass btn-ghost lg:hidden bg-[#162032] hover:bg-[#1f2942] text-sky-400"
             onClick={() => setIsOpen(!isOpen)}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ 
+              scale: 1.05,
+              backgroundColor: "rgba(14, 165, 233, 0.15)",
+            }}
             whileTap={{ scale: 0.95 }}
           >
             <motion.svg
@@ -109,7 +113,7 @@ const Navbar = () => {
           </motion.div>
           <motion.ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base/80 backdrop-blur-md rounded-box z-[1] mt-3 w-52 p-2 shadow text-blue-900"
+            className="menu menu-sm dropdown-content bg-gradient-to-b from-[#0b1320]/95 to-[#162032]/95 backdrop-blur-md rounded-box z-[1] mt-3 w-52 p-2 shadow-lg shadow-sky-900/20 border border-sky-900/30"
             initial="closed"
             animate={isOpen ? "open" : "closed"}
             variants={menuVariants}
@@ -117,21 +121,22 @@ const Navbar = () => {
             {navItems.map((item, index) => (
               <motion.li 
                 key={index} 
-                className="rounded-md overflow-hidden"
+                className="rounded-md overflow-hidden my-1"
                 variants={itemVariants}
               >
                 <motion.div
                   whileHover={{
-                    backgroundColor: "rgba(96, 165, 250, 0.5)",
-                    transition: { duration: 0.3, ease: "easeInOut" }
+                    backgroundColor: "rgba(14, 165, 233, 0.15)",
+                    transition: { duration: 0.4, ease: "easeInOut" }
                   }}
                   className="w-full h-full"
                 >
                   <Link 
                     href={item.path} 
                     onClick={() => setIsOpen(false)}
-                    className="block w-full h-full px-4 py-2"
+                    className="flex items-center w-full h-full px-4 py-2 text-blue-200/80 hover:text-sky-400 transition-colors"
                   >
+                    {item.icon}
                     {item.name}
                   </Link>
                 </motion.div>
@@ -146,8 +151,9 @@ const Navbar = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
         >   
           <motion.p 
-            className="text-black text-base md:text-xl md:pl-3 sm:pl-2 lg:text-2xl font-bold"
+            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-500 md:pl-3 sm:pl-2"
             whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             Nasim Rana Feroz
           </motion.p>
@@ -156,7 +162,7 @@ const Navbar = () => {
       
       <div className="navbar-center hidden lg:flex">
         <motion.ul 
-          className="menu menu-horizontal px-1 text-black"
+          className="menu menu-horizontal px-1 flex gap-2"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
@@ -164,27 +170,24 @@ const Navbar = () => {
           {navItems.map((item, index) => (
             <motion.li 
               key={index} 
-              className="rounded-md overflow-hidden mx-1"
+              className="rounded-lg overflow-hidden"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
             >
               <motion.div
-                whileHover={{
-                  backgroundColor: "rgba(96, 165, 250, 0.5)",
-                  scale: 1.05,
-                  transition: { 
-                    backgroundColor: { duration: 0.4, ease: "easeInOut" },
-                    scale: { duration: 0.2, ease: "easeOut" }
-                  }
+                whileHover={{ 
+                  scale: 1.05, 
+                  backgroundColor: "rgba(14, 165, 233, 0.15)",
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full h-full"
               >
                 <Link 
                   href={item.path}
-                  className="block w-full h-full px-4 py-2"
+                  className="flex items-center w-full h-full px-4 py-2 text-blue-200/80 hover:text-sky-400 transition-colors"
                 >
+                  {item.icon}
                   {item.name}
                 </Link>
               </motion.div>
@@ -200,18 +203,26 @@ const Navbar = () => {
         transition={{ delay: 0.4, duration: 0.5 }}
       >
         <motion.div 
-          className="flex items-center gap-2"
-          whileHover={{ scale: 1.05 }}
+          className="flex items-center gap-2 p-2 bg-[#162032] rounded-lg border border-sky-900/30"
+          whileHover={{ 
+            scale: 1.05,
+            backgroundColor: "rgba(14, 165, 233, 0.15)",
+          }}
+          whileTap={{ scale: 0.95 }}
         >
+          <FaMusic 
+            className={`${isMusicPlaying ? 'text-sky-400' : 'text-blue-200/80'} transition-colors`}
+            size={16}
+          />
           <motion.input
             type="checkbox"
-            className="toggle toggle-info ml-auto transition-all duration-300 ease-in-out"
+            className="toggle toggle-sm toggle-info ml-auto transition-all duration-300 ease-in-out"
             checked={isMusicPlaying}
             onChange={toggleMusic}
             whileTap={{ scale: 0.9 }}
           />
           <motion.p 
-            className="text-black"
+            className="text-blue-200/80"
             animate={isMusicPlaying ? 
               { scale: [1, 1.1, 1], transition: { repeat: Infinity, duration: 2 } } : 
               { scale: 1 }

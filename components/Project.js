@@ -32,7 +32,7 @@ const portfolioList = [
 
 const Project = () => {
   return (
-    <section className="py-14 md:py-24 bg-[#0b1727] text-white">
+    <section className="py-14 md:py-24 bg-gradient-to-b from-[#0b1727] to-[#0f1f32] text-white">
       <div className="container px-4 mx-auto">
         <div className="grid grid-cols-12 justify-center mb-6">
           <div className="col-span-12 lg:col-span-6 lg:col-start-4 text-center">

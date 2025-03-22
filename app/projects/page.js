@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Navbarx from "@/components/Navbarx";
 
 const portfolioList = [
   {
@@ -34,10 +33,6 @@ const portfolioList = [
 const page = () => {
   return (
     <div>
-      <div>
-        <Navbarx />
-      </div>
-
       <section className="pt-8 md:pt-16 pb-14 md:pb-24 bg-[#0b1727] text-white">
         <div className="container px-4 mx-auto">
           <div className="grid grid-cols-12 justify-center mb-6">

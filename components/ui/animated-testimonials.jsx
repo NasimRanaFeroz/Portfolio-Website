@@ -46,7 +46,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
   const isActive = (index) => index === active;
 
   return (
-    <div className="w-full mx-auto antialiased font-sans bg-[#0b1727] px-12 sm:px-28 md:px-20 lg:px-44 xl:px-64 py-14">
+    <div className="w-full mx-auto antialiased font-sans bg-gradient-to-b from-[#0b1727] to-[#0f1f32] px-12 sm:px-28 md:px-20 lg:px-44 xl:px-64 pt-14 pb-20">
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
         {/* Image Section */}
         <div>
