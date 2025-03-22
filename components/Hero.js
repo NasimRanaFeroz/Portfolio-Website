@@ -84,7 +84,6 @@ const Hero = () => {
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
-          {/* Profile Image */}
           <motion.div 
             className="flex justify-center items-center p-4 sm:p-8"
             style={{ scale: imageScale, opacity: imageOpacity }}
@@ -105,7 +104,7 @@ const Hero = () => {
                 src="/images/Profile.jpg"
                 alt="Nasim"
                 fill
-                className="rounded-full object-cover border-4 border-sky-400/30 shadow-lg"
+                className="rounded-full object-cover border-4 border-black/60 shadow-lg"
                 style={{
                   filter: "drop-shadow(0 0 10px rgba(56, 189, 248, 0.3))"
                 }}
@@ -120,7 +119,6 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Content */}
           <motion.div 
             className="grid rounded-xl backdrop-blur-md bg-white/10 border border-black/20 grid-cols-1 gap-5 py-6 sm:py-8 px-8 sm:px-10 md:w-3/5 lg:w-1/2 shadow-xl"
             style={{ y: contentY }}

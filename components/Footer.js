@@ -47,7 +47,6 @@ const Footer = () => {
     <footer className="bg-gradient-to-r from-[#0b1320] to-[#162032] text-blue-50 border-t border-sky-900/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand Section */}
           <div className="flex flex-col space-y-4">
             <motion.h2 
               className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-500"
@@ -60,7 +59,6 @@ const Footer = () => {
               Full Stack Web Developer specializing in modern web technologies and creative solutions.
             </p>
             
-            {/* Social Icons */}
             <div className="flex space-x-4 mt-4">
               {socialLinks.map((social, index) => (
                 <motion.a
@@ -82,7 +80,6 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Quick Links */}
           <div className="flex flex-col space-y-4">
             <h3 className="text-lg font-semibold text-sky-300">Quick Links</h3>
             <ul className="space-y-2">
@@ -96,7 +93,6 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Contact Info */}
           <div className="flex flex-col space-y-4">
             <h3 className="text-lg font-semibold text-sky-300">Get In Touch</h3>
             <p className="text-blue-200/80">
@@ -116,10 +112,8 @@ const Footer = () => {
           </div>
         </div>
         
-        {/* Divider */}
         <div className="h-px w-full bg-gradient-to-r from-transparent via-sky-900/40 to-transparent my-8"></div>
         
-        {/* Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-blue-300/60">
           <p>© {year} Nasim Rana Feroz. All rights reserved.</p>
           <p className="mt-2 md:mt-0">

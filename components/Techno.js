@@ -213,15 +213,12 @@ const techStack = [
 const TechCard = ({ tech, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   
-  // Mouse position tracking for 3D lighting effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   
-  // Convert mouse position to CSS variables for lighting effect
   const spotlightX = useMotionTemplate`${mouseX}px`;
   const spotlightY = useMotionTemplate`${mouseY}px`;
   
-  // Handle mouse move for 3D effect
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     mouseX.set(e.clientX - rect.left);
@@ -235,7 +232,7 @@ const TechCard = ({ tech, index }) => {
       transition={{ 
         duration: 0.5, 
         delay: index * 0.05,
-        ease: [0.22, 1, 0.36, 1] // Custom cubic bezier for smoother animation
+        ease: [0.22, 1, 0.36, 1]
       }}
       className="perspective"
     >
@@ -260,7 +257,6 @@ const TechCard = ({ tech, index }) => {
           border border-opacity-20 ${tech.borderColor} shadow-lg transition-all duration-300
           hover:border-opacity-80 overflow-hidden group`}
       >
-        {/* Animated background gradient */}
         <AnimatePresence>
           {isHovered && (
             <motion.div 
@@ -273,7 +269,6 @@ const TechCard = ({ tech, index }) => {
           )}
         </AnimatePresence>
         
-        {/* Floating particles effect on hover */}
         <AnimatePresence>
           {isHovered && (
             <>
@@ -308,7 +303,6 @@ const TechCard = ({ tech, index }) => {
           )}
         </AnimatePresence>
         
-        {/* Icon container with subtle rotation */}
         <motion.div 
           className={`flex-shrink-0 mr-4 w-14 h-14 rounded-lg flex items-center justify-center overflow-hidden ${tech.iconBg || ''} 
             shadow-inner transition-transform duration-300`}
@@ -327,7 +321,6 @@ const TechCard = ({ tech, index }) => {
           />
         </motion.div>
         
-        {/* Text content with staggered animation */}
         <div className="flex-grow">
           <motion.p 
             className="text-base font-medium"
@@ -362,7 +355,6 @@ const Techno = () => {
       onViewportEnter={() => setIsInView(true)}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Animated header */}
         <motion.div 
           className="text-center pb-12"
           initial={{ y: -30, opacity: 0 }}
@@ -399,7 +391,6 @@ const Techno = () => {
           </motion.p>
         </motion.div>
 
-        {/* Tech grid with stagger effect */}
         <motion.div 
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-5"
           initial="hidden"
@@ -419,7 +410,6 @@ const Techno = () => {
           ))}
         </motion.div>
 
-        {/* Experience indicator with pulse animation */}
         <motion.div 
           className="mt-14 text-center"
           initial={{ opacity: 0, y: 20 }}

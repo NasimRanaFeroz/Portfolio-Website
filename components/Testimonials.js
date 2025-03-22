@@ -3,7 +3,6 @@
 import React from "react";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
-// Testimonials data
 const testimonials = [
   {
     quote:
