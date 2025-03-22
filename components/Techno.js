@@ -1,7 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, useMotionTemplate, useMotionValue, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  AnimatePresence,
+  useInView,
+} from "framer-motion";
 
 const techStack = [
   {
@@ -10,7 +16,7 @@ const techStack = [
     icon: "/images/icon/JS-logo.png",
     bgColor: "bg-yellow-900/20",
     borderColor: "border-yellow-500/50",
-    glowColor: "rgba(234, 179, 8, 0.3)"
+    glowColor: "rgba(234, 179, 8, 0.3)",
   },
   {
     name: "TypeScript",
@@ -18,7 +24,7 @@ const techStack = [
     icon: "/images/icon/TS.png",
     bgColor: "bg-blue-900/20",
     borderColor: "border-blue-500/50",
-    glowColor: "rgba(59, 130, 246, 0.3)"
+    glowColor: "rgba(59, 130, 246, 0.3)",
   },
   {
     name: "React",
@@ -26,7 +32,7 @@ const techStack = [
     icon: "/images/icon/react.png",
     bgColor: "bg-blue-900/20",
     borderColor: "border-cyan-500/50",
-    glowColor: "rgba(14, 165, 233, 0.3)"
+    glowColor: "rgba(14, 165, 233, 0.3)",
   },
   {
     name: "NextJS",
@@ -34,7 +40,7 @@ const techStack = [
     icon: "/images/icon/nextJS.jpg",
     bgColor: "bg-slate-900/40",
     borderColor: "border-white/30",
-    glowColor: "rgba(226, 232, 240, 0.2)"
+    glowColor: "rgba(226, 232, 240, 0.2)",
   },
   {
     name: "NodeJS",
@@ -43,7 +49,7 @@ const techStack = [
     bgColor: "bg-green-900/20",
     borderColor: "border-green-500/50",
     iconBg: "bg-white",
-    glowColor: "rgba(34, 197, 94, 0.3)"
+    glowColor: "rgba(34, 197, 94, 0.3)",
   },
   {
     name: "VueJS",
@@ -51,7 +57,7 @@ const techStack = [
     icon: "/images/icon/vue.png",
     bgColor: "bg-green-900/20",
     borderColor: "border-green-500/50",
-    glowColor: "rgba(34, 197, 94, 0.3)"
+    glowColor: "rgba(34, 197, 94, 0.3)",
   },
   {
     name: "React Native",
@@ -59,7 +65,7 @@ const techStack = [
     icon: "/images/icon/native.png",
     bgColor: "bg-blue-900/20",
     borderColor: "border-cyan-500/50",
-    glowColor: "rgba(14, 165, 233, 0.3)"
+    glowColor: "rgba(14, 165, 233, 0.3)",
   },
   {
     name: "ExpressJS",
@@ -67,7 +73,7 @@ const techStack = [
     icon: "/images/icon/ex.png",
     bgColor: "bg-gray-900/20",
     borderColor: "border-gray-500/50",
-    glowColor: "rgba(156, 163, 175, 0.3)"
+    glowColor: "rgba(156, 163, 175, 0.3)",
   },
   {
     name: "Python",
@@ -75,7 +81,7 @@ const techStack = [
     icon: "/images/icon/py.png",
     bgColor: "bg-blue-900/20",
     borderColor: "border-yellow-500/50",
-    glowColor: "rgba(59, 130, 246, 0.3)"
+    glowColor: "rgba(59, 130, 246, 0.3)",
   },
   {
     name: "Git",
@@ -83,7 +89,7 @@ const techStack = [
     icon: "/images/icon/git.png",
     bgColor: "bg-orange-900/20",
     borderColor: "border-orange-500/50",
-    glowColor: "rgba(249, 115, 22, 0.3)"
+    glowColor: "rgba(249, 115, 22, 0.3)",
   },
   {
     name: "Github",
@@ -91,7 +97,7 @@ const techStack = [
     icon: "/images/icon/ghub.png",
     bgColor: "bg-purple-900/20",
     borderColor: "border-purple-500/50",
-    glowColor: "rgba(168, 85, 247, 0.3)"
+    glowColor: "rgba(168, 85, 247, 0.3)",
   },
   {
     name: "Tailwind",
@@ -99,7 +105,7 @@ const techStack = [
     icon: "/images/icon/tw.png",
     bgColor: "bg-cyan-900/20",
     borderColor: "border-cyan-500/50",
-    glowColor: "rgba(6, 182, 212, 0.3)"
+    glowColor: "rgba(6, 182, 212, 0.3)",
   },
   {
     name: "BootStrap",
@@ -107,7 +113,7 @@ const techStack = [
     icon: "/images/icon/bs.png",
     bgColor: "bg-purple-900/20",
     borderColor: "border-purple-500/50",
-    glowColor: "rgba(168, 85, 247, 0.3)"
+    glowColor: "rgba(168, 85, 247, 0.3)",
   },
   {
     name: "Figma",
@@ -115,7 +121,7 @@ const techStack = [
     icon: "/images/icon/figma.png",
     bgColor: "bg-pink-900/20",
     borderColor: "border-pink-500/50",
-    glowColor: "rgba(236, 72, 153, 0.3)"
+    glowColor: "rgba(236, 72, 153, 0.3)",
   },
   {
     name: "PostgreSQL",
@@ -123,7 +129,7 @@ const techStack = [
     icon: "/images/icon/postgre.png",
     bgColor: "bg-blue-900/20",
     borderColor: "border-blue-500/50",
-    glowColor: "rgba(59, 130, 246, 0.3)"
+    glowColor: "rgba(59, 130, 246, 0.3)",
   },
   {
     name: "MongoDB",
@@ -131,7 +137,7 @@ const techStack = [
     icon: "/images/icon/MongoDB.png",
     bgColor: "bg-green-900/20",
     borderColor: "border-green-500/50",
-    glowColor: "rgba(34, 197, 94, 0.3)"
+    glowColor: "rgba(34, 197, 94, 0.3)",
   },
   {
     name: "JWT",
@@ -139,7 +145,7 @@ const techStack = [
     icon: "/images/icon/jwt.png",
     bgColor: "bg-purple-900/20",
     borderColor: "border-purple-500/50",
-    glowColor: "rgba(168, 85, 247, 0.3)"
+    glowColor: "rgba(168, 85, 247, 0.3)",
   },
   {
     name: "Stripe",
@@ -147,7 +153,7 @@ const techStack = [
     icon: "/images/icon/stripe.png",
     bgColor: "bg-purple-900/20",
     borderColor: "border-purple-500/50",
-    glowColor: "rgba(168, 85, 247, 0.3)"
+    glowColor: "rgba(168, 85, 247, 0.3)",
   },
   {
     name: "AWS",
@@ -163,7 +169,7 @@ const techStack = [
     icon: "/images/icon/flask.png",
     bgColor: "bg-gray-900/20",
     borderColor: "border-gray-500/50",
-    glowColor: "rgba(156, 163, 175, 0.3)"
+    glowColor: "rgba(156, 163, 175, 0.3)",
   },
   {
     name: "SupaBase",
@@ -172,7 +178,7 @@ const techStack = [
     bgColor: "bg-green-900/20",
     borderColor: "border-green-500/50",
     iconBg: "bg-slate-900",
-    glowColor: "rgba(34, 197, 94, 0.3)"
+    glowColor: "rgba(34, 197, 94, 0.3)",
   },
   {
     name: "MySQL",
@@ -181,7 +187,7 @@ const techStack = [
     bgColor: "bg-blue-900/20",
     borderColor: "border-blue-500/50",
     iconBg: "bg-white",
-    glowColor: "rgba(59, 130, 246, 0.3)"
+    glowColor: "rgba(59, 130, 246, 0.3)",
   },
   {
     name: "Firebase",
@@ -189,7 +195,7 @@ const techStack = [
     icon: "/images/icon/fb.png",
     bgColor: "bg-orange-900/20",
     borderColor: "border-orange-500/50",
-    glowColor: "rgba(249, 115, 22, 0.3)"
+    glowColor: "rgba(249, 115, 22, 0.3)",
   },
   {
     name: "HTML",
@@ -197,7 +203,7 @@ const techStack = [
     icon: "/images/icon/html.png",
     bgColor: "bg-orange-900/20",
     borderColor: "border-orange-500/50",
-    glowColor: "rgba(249, 115, 22, 0.3)"
+    glowColor: "rgba(249, 115, 22, 0.3)",
   },
   {
     name: "CSS",
@@ -205,12 +211,11 @@ const techStack = [
     icon: "/images/icon/css3.png",
     bgColor: "bg-blue-900/20",
     borderColor: "border-blue-500/50",
-    glowColor: "rgba(59, 130, 246, 0.3)"
+    glowColor: "rgba(59, 130, 246, 0.3)",
   },
 ];
 
-
-const TechCard = ({ tech, index }) => {
+const TechCard = ({ tech, index, isInView }) => {
   const [isHovered, setIsHovered] = useState(false);
   
   const mouseX = useMotionValue(0);
@@ -225,16 +230,23 @@ const TechCard = ({ tech, index }) => {
     mouseY.set(e.clientY - rect.top);
   };
 
+  const rowIndex = Math.floor(index / 5);
+  const colIndex = index % 5;
+  const staggerDelay = (rowIndex * 0.05) + (colIndex * 0.05);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.5, 
-        delay: index * 0.05,
-        ease: [0.22, 1, 0.36, 1]
-      }}
-      className="perspective"
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { 
+        opacity: 1, 
+        y: 0,
+        transition: { 
+          duration: 0.6, 
+          delay: staggerDelay,
+          ease: [0.22, 1, 0.36, 1]
+        }
+      } : {}}
+      className="perspective h-full"
     >
       <motion.div 
         onMouseMove={handleMouseMove}
@@ -255,7 +267,7 @@ const TechCard = ({ tech, index }) => {
         }}
         className={`relative flex items-center rounded-xl py-4 px-4 ${tech.bgColor} backdrop-blur-sm 
           border border-opacity-20 ${tech.borderColor} shadow-lg transition-all duration-300
-          hover:border-opacity-80 overflow-hidden group`}
+          hover:border-opacity-80 overflow-hidden group h-full`}
       >
         <AnimatePresence>
           {isHovered && (
@@ -343,18 +355,70 @@ const TechCard = ({ tech, index }) => {
   );
 };
 
-const Techno = () => {
-  const [isInView, setIsInView] = useState(false);
+const FloatingTechBubbles = ({ isInView }) => {
+  const bubbleTechs = techStack.filter((_, i) => i % 4 === 0).slice(0, 6);
   
   return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {bubbleTechs.map((tech, index) => (
+        <motion.div
+          key={tech.name}
+          initial={{ 
+            opacity: 0,
+            x: Math.random() * 100 - 50,
+            y: Math.random() * 100 - 50,
+            scale: 0.5
+          }}
+          animate={isInView ? { 
+            opacity: [0, 0.2, 0.1],
+            x: Math.random() * 100 - 50,
+            y: Math.random() * 100 - 50,
+            scale: Math.random() * 0.4 + 0.8,
+            transition: {
+              duration: Math.random() * 10 + 20,
+              repeat: Infinity,
+              repeatType: "mirror",
+              delay: index * 2
+            }
+          } : {}}
+          className="absolute rounded-full"
+          style={{
+            left: `${Math.random() * 90 + 5}%`,
+            top: `${Math.random() * 90 + 5}%`,
+            background: tech.glowColor,
+            width: `${Math.random() * 200 + 100}px`,
+            height: `${Math.random() * 200 + 100}px`,
+            filter: 'blur(80px)'
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const Techno = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.1 });
+  const [hasAnimated, setHasAnimated] = useState(false);
+  
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
+
+  return (
     <motion.div 
-      className="bg-gradient-to-b from-[#0b1727] to-[#0f2136] py-12 md:py-20"
+      className="bg-gradient-to-b from-[#0b1727] to-[#0f2136] py-12 md:py-20 relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      onViewportEnter={() => setIsInView(true)}
+      ref={ref}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Floating background elements */}
+      <FloatingTechBubbles isInView={isInView} />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="text-center pb-12"
           initial={{ y: -30, opacity: 0 }}
@@ -391,24 +455,17 @@ const Techno = () => {
           </motion.p>
         </motion.div>
 
-        <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-5"
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.06
-              }
-            }
-          }}
-        >
+        {/* Grid layout that flows horizontally */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-5">
           {techStack.map((tech, index) => (
-            <TechCard key={tech.name} tech={tech} index={index} />
+            <TechCard 
+              key={tech.name} 
+              tech={tech} 
+              index={index} 
+              isInView={isInView || hasAnimated}
+            />
           ))}
-        </motion.div>
+        </div>
 
         <motion.div 
           className="mt-14 text-center"
