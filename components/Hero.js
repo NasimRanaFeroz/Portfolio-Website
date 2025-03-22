@@ -23,7 +23,7 @@ const Hero = () => {
           <div className="flex justify-center items-center p-8 pt-12">
             <div className="relative w-30 h-30 sm:w-44 md:w-64 lg:w-80">
               <Image
-                src="/images/profile.jpg"
+                src="/images/Profile.jpg"
                 alt="Nasim"
                 width={280}
                 height={280}

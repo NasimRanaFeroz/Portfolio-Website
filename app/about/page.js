@@ -17,7 +17,7 @@ const about = () => {
           <div className="flex justify-center items-center p-4 sm:p-1">
             <div className="relative w-30 h-30 sm:w-44 md:w-56 lg:w-80">
               <Image
-                src="/images/profile.jpg"
+                src="/images/Profile.jpg"
                 alt="Nasim"
                 width={280}
                 height={280}
