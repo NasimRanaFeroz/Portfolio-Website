@@ -23,7 +23,6 @@ const Hero = () => {
   const springY = useSpring(0, { stiffness: 50, damping: 20 });
   
   useEffect(() => {
-    // Debounced mouse move handler
     let timeoutId = null;
     const handleMouseMove = (e) => {
       if (timeoutId) clearTimeout(timeoutId);
@@ -33,14 +32,12 @@ const Hero = () => {
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
         
-        // Calculate parallax values
         const parallaxX = (clientX - centerX) / 30;
         const parallaxY = (clientY - centerY) / 30;
         
-        // Update spring values for smooth animation
         springX.set(parallaxX);
         springY.set(parallaxY);
-      }, 5); // Short timeout for debouncing
+      }, 5);
     };
     
     window.addEventListener("mousemove", handleMouseMove);
@@ -108,7 +105,7 @@ const Hero = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative min-h-auto overflow-hidden">
+    <div ref={containerRef} className="relative min-h-auto overflow-hidden -mt-4">
       <BackgroundBeamsWithCollision>
         <motion.div 
           className="flex flex-col h-[calc(100vh-80px)] items-center justify-center lg:flex-row-reverse lg:justify-center gap-3 md:gap-6 lg:gap-14 xl:gap-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
@@ -226,7 +223,6 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Rest of your component remains the same */}
           <motion.div 
             className="grid rounded-xl backdrop-blur-md bg-gradient-to-r from-[#0b1320]/80 to-[#162032]/80 border border-sky-900/40 grid-cols-1 gap-5 py-6 sm:py-8 px-8 sm:px-10 md:w-3/5 lg:w-1/2 shadow-xl relative"
             style={{ y: contentY }}
@@ -236,7 +232,6 @@ const Hero = () => {
               transition: { duration: 0.3 }
             }}
           >
-            {/* Content remains the same */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-400 to-blue-600 rounded-t-xl" />
             <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-sky-400" />
             <div className="absolute -top-1 -left-1 w-3 h-3 rounded-full bg-blue-600 " />

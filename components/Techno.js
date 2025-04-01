@@ -140,11 +140,11 @@ const techStack = [
     glowColor: "rgba(34, 197, 94, 0.3)",
   },
   {
-    name: "JWT",
-    category: "Authentication token",
-    icon: "/images/icon/jwt.png",
-    bgColor: "bg-purple-900/20",
-    borderColor: "border-purple-500/50",
+    name: "Jest",
+    category: "Testing Framework",
+    icon: "/images/icon/jest.png",
+    bgColor: "bg-red-900/20",
+    borderColor: "border-red-500/50",
     glowColor: "rgba(168, 85, 247, 0.3)",
   },
   {
