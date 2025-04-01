@@ -356,39 +356,59 @@ const TechCard = ({ tech, index, isInView }) => {
 };
 
 const FloatingTechBubbles = ({ isInView }) => {
-  const bubbleTechs = techStack.filter((_, i) => i % 4 === 0).slice(0, 6);
-  
+  const [bubbleTechs, setBubbleTechs] = useState([]);
+
+  useEffect(() => {
+    const generatedBubbles = techStack
+      .filter((_, i) => i % 4 === 0)
+      .slice(0, 6)
+      .map((tech) => ({
+        ...tech,
+        x: Math.random() * 100 - 50,
+        y: Math.random() * 100 - 50,
+        scale: Math.random() * 0.4 + 0.8,
+        size: Math.random() * 200 + 100,
+        left: Math.random() * 90 + 5,
+        top: Math.random() * 90 + 5,
+      }));
+    setBubbleTechs(generatedBubbles);
+  }, []);
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {bubbleTechs.map((tech, index) => (
         <motion.div
           key={tech.name}
-          initial={{ 
+          initial={{
             opacity: 0,
-            x: Math.random() * 100 - 50,
-            y: Math.random() * 100 - 50,
-            scale: 0.5
+            x: tech.x,
+            y: tech.y,
+            scale: 0.5,
           }}
-          animate={isInView ? { 
-            opacity: [0, 0.2, 0.1],
-            x: Math.random() * 100 - 50,
-            y: Math.random() * 100 - 50,
-            scale: Math.random() * 0.4 + 0.8,
-            transition: {
-              duration: Math.random() * 10 + 20,
-              repeat: Infinity,
-              repeatType: "mirror",
-              delay: index * 2
-            }
-          } : {}}
+          animate={
+            isInView
+              ? {
+                  opacity: [0, 0.2, 0.1],
+                  x: tech.x,
+                  y: tech.y,
+                  scale: tech.scale,
+                  transition: {
+                    duration: Math.random() * 10 + 20,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    delay: index * 2,
+                  },
+                }
+              : {}
+          }
           className="absolute rounded-full"
           style={{
-            left: `${Math.random() * 90 + 5}%`,
-            top: `${Math.random() * 90 + 5}%`,
+            left: `${tech.left}%`,
+            top: `${tech.top}%`,
             background: tech.glowColor,
-            width: `${Math.random() * 200 + 100}px`,
-            height: `${Math.random() * 200 + 100}px`,
-            filter: 'blur(80px)'
+            width: `${tech.size}px`,
+            height: `${tech.size}px`,
+            filter: "blur(80px)",
           }}
         />
       ))}

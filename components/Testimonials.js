@@ -11,7 +11,7 @@ const testimonials = [
       "John transformed our legacy codebase into a modern, scalable application. His full-stack expertise allowed him to rebuild our frontend with React while optimizing our Node.js backend for performance. The result was a 70% improvement in load times and a much better user experience.",
     name: "Sarah Chen",
     designation: "Product Manager at TechFlow",
-    src: "/images/1.png",
+    src: "/images/4.png",
     rating: 5,
     project: "E-commerce Platform Overhaul",
     relation: "client"
@@ -21,7 +21,7 @@ const testimonials = [
       "Working with John on our SaaS dashboard was exceptional. He architected a robust API with Express and MongoDB that handled our complex data requirements, while building a responsive React frontend that our users love. His ability to work across the entire stack made the development process seamless.",
     name: "Michael Rodriguez",
     designation: "CTO at InnovateSphere",
-    src: "/images/5.png",
+    src: "/images/4.png",
     rating: 5,
     project: "Analytics Dashboard",
     relation: "client"
@@ -31,7 +31,7 @@ const testimonials = [
       "John's full-stack skills were crucial for our startup. He implemented authentication with JWT, set up our PostgreSQL database with proper indexing, and created a beautiful UI with Next.js and Tailwind. His attention to both backend security and frontend usability was exactly what we needed.",
     name: "Emily Watson",
     designation: "Operations Director at CloudScale",
-    src: "/images/2.png",
+    src: "/images/4.png",
     rating: 5,
     project: "Project Management Tool",
     relation: "client"
@@ -41,7 +41,7 @@ const testimonials = [
       "As a fellow developer, I've collaborated with John on several projects, and his full-stack expertise is impressive. He's equally comfortable optimizing database queries as he is implementing complex UI animations. His code is clean, well-documented, and follows best practices across both frontend and backend.",
     name: "James Kim",
     designation: "Engineering Lead at DataPro",
-    src: "/images/3.png",
+    src: "/images/4.png",
     rating: 5,
     project: "Multiple Projects",
     relation: "colleague"
@@ -61,7 +61,7 @@ const testimonials = [
       "We hired John to rebuild our payment processing system. He implemented a secure backend with Node.js that integrated with multiple payment gateways, while creating a seamless checkout experience with React. His full-stack approach ensured consistent error handling across the entire application.",
     name: "David Wilson",
     designation: "Founder at PaymentFlow",
-    src: "/images/6.png",
+    src: "/images/4.png",
     rating: 5,
     project: "Payment Processing System",
     relation: "client"

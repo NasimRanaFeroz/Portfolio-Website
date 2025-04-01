@@ -6,7 +6,6 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { FiExternalLink, FiGithub, FiArrowRight } from "react-icons/fi";
 import { HiOutlineChevronDown } from "react-icons/hi";
 
-// Enhanced portfolio data with more relevant fields
 const portfolioList = [
   {
     id: 1,
@@ -104,7 +103,6 @@ const portfolioList = [
   },
 ];
 
-// All unique categories from portfolio items
 const categories = ["All", ...new Set(portfolioList.map(item => item.category))];
 
 const ProjectCard = ({ project, index, isInView }) => {
@@ -128,7 +126,6 @@ const ProjectCard = ({ project, index, isInView }) => {
         project.featured ? "md:col-span-2" : ""
       }`}
     >
-      {/* Project Image with Overlay */}
       <div className="relative h-64 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
         <motion.div 
@@ -145,7 +142,6 @@ const ProjectCard = ({ project, index, isInView }) => {
           />
         </motion.div>
         
-        {/* Featured Badge */}
         {project.featured && (
           <div className="absolute top-4 right-4 z-20">
             <span className="px-3 py-1 text-xs font-medium rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
@@ -154,7 +150,6 @@ const ProjectCard = ({ project, index, isInView }) => {
           </div>
         )}
         
-        {/* Category Badge */}
         <div className="absolute top-4 left-4 z-20">
           <span className="px-3 py-1 text-xs font-medium rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
             {project.category}
@@ -162,7 +157,6 @@ const ProjectCard = ({ project, index, isInView }) => {
         </div>
       </div>
       
-      {/* Content */}
       <div className="p-6">
         <motion.h3 
           className="text-xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors duration-300"
@@ -175,7 +169,6 @@ const ProjectCard = ({ project, index, isInView }) => {
           {project.description}
         </p>
         
-        {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-5">
           {project.tags.slice(0, 3).map((tag, i) => (
             <span 
@@ -192,13 +185,11 @@ const ProjectCard = ({ project, index, isInView }) => {
           )}
         </div>
         
-        {/* Client & Date */}
         <div className="flex justify-between items-center mb-5 text-xs text-slate-400">
           <div>Client: {project.client}</div>
           <div>{project.completionDate}</div>
         </div>
         
-        {/* Action Buttons */}
         <div className="flex justify-between items-center">
           <motion.button
             onClick={() => setShowDetails(!showDetails)}
@@ -244,7 +235,6 @@ const ProjectCard = ({ project, index, isInView }) => {
           </div>
         </div>
         
-        {/* Extended Details */}
         <AnimatePresence>
           {showDetails && (
             <motion.div

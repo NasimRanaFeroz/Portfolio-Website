@@ -19,15 +19,10 @@ const Hero = () => {
   });
   
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isBrowser, setIsBrowser] = useState(false);
-  
-  // Create spring-based values for smoother animation
   const springX = useSpring(0, { stiffness: 50, damping: 20 });
   const springY = useSpring(0, { stiffness: 50, damping: 20 });
   
   useEffect(() => {
-    setIsBrowser(true);
-    
     // Debounced mouse move handler
     let timeoutId = null;
     const handleMouseMove = (e) => {
@@ -35,20 +30,16 @@ const Hero = () => {
       
       timeoutId = setTimeout(() => {
         const { clientX, clientY } = e;
-        setMousePosition({ x: clientX, y: clientY });
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
         
-        if (isBrowser) {
-          const centerX = window.innerWidth / 2;
-          const centerY = window.innerHeight / 2;
-          
-          // Calculate parallax values
-          const parallaxX = (clientX - centerX) / 30;
-          const parallaxY = (clientY - centerY) / 30;
-          
-          // Update spring values for smooth animation
-          springX.set(parallaxX);
-          springY.set(parallaxY);
-        }
+        // Calculate parallax values
+        const parallaxX = (clientX - centerX) / 30;
+        const parallaxY = (clientY - centerY) / 30;
+        
+        // Update spring values for smooth animation
+        springX.set(parallaxX);
+        springY.set(parallaxY);
       }, 5); // Short timeout for debouncing
     };
     
@@ -57,7 +48,7 @@ const Hero = () => {
       window.removeEventListener("mousemove", handleMouseMove);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isBrowser, springX, springY]);
+  }, [springX, springY]);
   
   const imageScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
