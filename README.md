@@ -2,6 +2,12 @@
 
 Welcome to my personal portfolio website! This modern, responsive portfolio showcases my projects, skills, and professional experience as a developer. Built with Next.js and React, it features a clean design with smooth animations powered by Framer Motion.
 
+
+## Live Demo
+
+Visit [The website](https://nas-im.onrender.com/) to explore the portfolio in action!
+
+
 ## Features
 
 - **Responsive Design**: Fully responsive layout that works on all device sizes
