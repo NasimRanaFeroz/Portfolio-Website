@@ -6,62 +6,111 @@ import React, { useRef, useState, useEffect } from "react";
 export const BackgroundBeamsWithCollision = ({ children, className }) => {
   const containerRef = useRef(null);
   const parentRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(0);
 
-  const beams = [
+  const baseBeams = [
     {
-      initialX: 10,
-      translateX: 10,
+      initialXPercent: 5,
       duration: 7,
       repeatDelay: 3,
       delay: 2,
     },
     {
-      initialX: 600,
-      translateX: 600,
+      initialXPercent: 25,
       duration: 3,
       repeatDelay: 3,
       delay: 4,
     },
     {
-      initialX: 100,
-      translateX: 100,
+      initialXPercent: 45,
       duration: 7,
       repeatDelay: 7,
       className: "h-6",
     },
     {
-      initialX: 400,
-      translateX: 400,
+      initialXPercent: 15,
       duration: 5,
       repeatDelay: 14,
       delay: 4,
     },
     {
-      initialX: 800,
-      translateX: 800,
+      initialXPercent: 65,
       duration: 11,
       repeatDelay: 2,
       className: "h-20",
     },
     {
-      initialX: 1000,
-      translateX: 1000,
+      initialXPercent: 85,
       duration: 4,
       repeatDelay: 2,
       className: "h-12",
     },
     {
-      initialX: 1200,
-      translateX: 1200,
+      initialXPercent: 35,
       duration: 6,
       repeatDelay: 4,
       delay: 2,
       className: "h-6",
     },
+    {
+      initialXPercent: 75,
+      duration: 8,
+      repeatDelay: 5,
+      delay: 1,
+      className: "h-8",
+    },
+    {
+      initialXPercent: 95,
+      duration: 9,
+      repeatDelay: 3,
+      delay: 3,
+      className: "h-4",
+    },
   ];
 
+  const beams = baseBeams.map((beam) => ({
+    ...beam,
+    initialX: (containerWidth * beam.initialXPercent) / 100,
+    translateX: (containerWidth * beam.initialXPercent) / 100,
+  }));
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (parentRef.current) {
+        setContainerWidth(parentRef.current.offsetWidth);
+      }
+    };
+
+    updateWidth();
+
+    window.addEventListener("resize", updateWidth);
+
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  if (containerWidth === 0) {
+    return (
+      <div
+        ref={parentRef}
+        className={cn(
+          "h-screen sm:h-[40rem] bg-gradient-to-b from-[#0b1727] to-[#0f1f32] relative flex items-center w-full justify-center overflow-hidden",
+          className
+        )}
+      >
+        {children}
+        <div
+          ref={containerRef}
+          className="absolute bottom-0 bg-neutral-100 w-full inset-x-0 pointer-events-none"
+          style={{
+            boxShadow:
+              "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset",
+          }}
+        ></div>
+      </div>
+    );
+  }
+
   return (
-    //bg-[url('/images/bg-rain.png')] bg-cover bg-center
     <div
       ref={parentRef}
       className={cn(
@@ -69,9 +118,9 @@ export const BackgroundBeamsWithCollision = ({ children, className }) => {
         className
       )}
     >
-      {beams.map((beam) => (
+      {beams.map((beam, index) => (
         <CollisionMechanism
-          key={beam.initialX + "beam-idx"}
+          key={`${beam.initialX}-beam-${index}`}
           beamOptions={beam}
           containerRef={containerRef}
           parentRef={parentRef}

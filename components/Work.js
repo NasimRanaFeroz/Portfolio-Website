@@ -19,6 +19,23 @@ export default function WorkEducation() {
 
   const workExperience = [
     {
+      company: "SXSY Works",
+      position: "Front-End Developer",
+      period: "April 2025 - Current",
+      location: "Chengdu, Sichuan, China",
+      description:
+        "Built and refined modern web applications and websites, delivering engaging user interfaces, smooth animations, and optimized performance. Leveraged React.js, Umi.js, and LESS for front-end development, implemented interactive features with wow.js, and enhanced a WordPress site’s speed and SEO through targeted performance improvements.",
+      achievements: [
+        "Developed and enhanced a React.js & Umi.js application using LESS, resulting in a more visually engaging and user-friendly interface.",
+        "Implemented interactive UI elements and smooth animations using wow.js, improving user experience and front-end aesthetics.",
+        "Optimized code structure and workflow efficiency, leading to a more maintainable and scalable frontend architecture.",
+        "Optimized a WordPress website, improving page load speed by 60% through code refinement, image compression, and efficient caching strategies, resulting in a smoother user experience and higher SEO performance.",
+      ],
+      tags: ["React", "Umi.js", "Webpack", "LESS", "Ant-Design", "WordPress"],
+      logo: "/images/icon/sxsy.png",
+      color: "#96560c",
+    },
+    {
       company: "Chengdu SunCaper Data Co. Ltd",
       position: "Data Science & Big Data Intern",
       period: "February 2025 - March 2025",
@@ -34,10 +51,12 @@ export default function WorkEducation() {
         "React",
         "Python",
         "Node.js",
+        "NumPy",
         "Prompt Engineering",
         "DeepSeek API",
       ],
       logo: "/images/icon/sun.png",
+      color: "#2563eb",
     },
     {
       company: "Papalazius Mercantile Inc: Papalazius Books",
@@ -52,8 +71,9 @@ export default function WorkEducation() {
         "Built a full-stack shipping management portal using React, Tailwind, and Axios, streamlining inventory and shipment tracking.",
         "Led the migration of the Inbound API (v0) to v2024-03-20, resolving 10+ deprecated endpoints and ensuring compliance with Amazon’s latest standards.",
       ],
-      tags: ["JavaScript", "React", "Node.js", "Amazon SP API", "Tailwind CSS"],
+      tags: ["JavaScript", "React", "Node.js", "Amazon SP API", "Keepa API", "Tailwind CSS"],
       logo: "/images/icon/papa.png",
+      color: "#2563eb",
     },
   ];
 
@@ -104,7 +124,7 @@ export default function WorkEducation() {
         "Member of school science club",
       ],
       tags: [],
-      color: "#00008B",
+      color: "#7171d9",
     },
   ];
 
@@ -369,7 +389,7 @@ export default function WorkEducation() {
                               <div
                                 className="w-16 h-16 rounded-lg flex items-center justify-center p-2 shadow-lg"
                                 style={{
-                                  background: `linear-gradient(135deg, #2563eb33, #2563eb11)`,
+                                  background: `linear-gradient(135deg, ${job.color}33, ${job.color}11)`,
                                   border: `1px solid #2563eb44`,
                                 }}
                               >
@@ -432,7 +452,7 @@ export default function WorkEducation() {
                                               animate={{ opacity: 1, x: 0 }}
                                               transition={{ delay: i * 0.1 }}
                                             >
-                                              <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 mr-2"></span>
+                                              <span className="text-blue-400 mr-2 text-xl leading-none">•</span>
                                               {achievement}
                                             </motion.li>
                                           )
@@ -457,7 +477,7 @@ export default function WorkEducation() {
 
                               {index !== 0 &&
                                 selectedItem !== `work-${index}` && (
-                                  <motion.button className="mt-3 text-xs text-blue-400 hover:text-blue-300 flex items-center">
+                                  <motion.button className="mt-6 text-xs text-blue-400 hover:text-blue-300 flex items-center">
                                     <span>Show details</span>
                                   </motion.button>
                                 )}

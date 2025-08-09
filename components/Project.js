@@ -9,7 +9,7 @@ import { FiExternalLink, FiGithub } from "react-icons/fi";
 
 const portfolioList = [
   {
-    image: "/images/projects/fork.jpg",
+    image: "/images/projects/fork.png",
     title: "Fork & Friends",
     description:
       "An AI-powered analytics and recommendation platform leveraging large-scale Yelp data for business insights and personalized user suggestions.",
@@ -24,32 +24,37 @@ const portfolioList = [
     description:
       "AI-powered mobile app for automated strabismus screening, patient management, and real-time diagnostic feedback.",
     tags: ["React Native", "Node.js", "Flask", "PyTorch", "MongoDB"],
-    liveLink: "https://github.com/OptiHealth-Innovators/StrabismusCareApp",
-    githubLink: "https://github.com/OptiHealth-Innovators/StrabismusCareApp",
+    liveLink: "https://github.com/orgs/StrabismusCare/repositories",
+    githubLink: "https://github.com/orgs/StrabismusCare/repositories",
   },
   {
     image: "/images/projects/finance.jpg",
     title: "AI-Powered Financial Dashboard",
-    description: "A smart financial dashboard leveraging AI for expense tracking, budgeting insights, and personalized financial recommendations.",
+    description:
+      "A smart financial dashboard leveraging AI for expense tracking, budgeting insights, and personalized financial recommendations.",
     tags: ["React", "Node.js", "Express", "MongoDB", "AI/ML"],
-    liveLink: "https://github.com/NasimRanaFeroz/AI-powered-financial-dashboard",
-    githubLink: "https://github.com/NasimRanaFeroz/AI-powered-financial-dashboard",
+    liveLink:
+      "https://github.com/NasimRanaFeroz/AI-powered-financial-dashboard",
+    githubLink:
+      "https://github.com/NasimRanaFeroz/AI-powered-financial-dashboard",
   },
   {
     image: "/images/projects/ecom.jpg",
     title: "Urban Closet",
-    description: "A modern e-commerce platform featuring seamless user authentication, secure payments, and a dynamic product catalog.",
+    description:
+      "A modern e-commerce platform featuring seamless user authentication, secure payments, and a dynamic product catalog.",
     tags: ["MERN Stack", "Redux", "Stripe", "MongoDB", "Node.js"],
     liveLink: "https://github.com/mdnezam-uddin/urban-closet-fe",
-    githubLink: "https://github.com/mdnezam-uddin/urban-closet-fe"
+    githubLink: "https://github.com/mdnezam-uddin/urban-closet-fe",
   },
   {
     image: "/images/projects/weather.jpg",
-      title: "City Weather Checker",
-      description: "A lightweight web application that provides real-time weather updates for cities worldwide using OpenWeather API.",
-      tags: ["Python", "Flask", "OpenWeather API", "HTML", "CSS"],
-      liveLink: "https://city-weather-checker-lrnj.onrender.com/",
-      githubLink: "https://github.com/NasimRanaFeroz/Weather-Website"
+    title: "City Weather Checker",
+    description:
+      "A lightweight web application that provides real-time weather updates for cities worldwide using OpenWeather API.",
+    tags: ["Python", "Flask", "OpenWeather API", "HTML", "CSS"],
+    liveLink: "https://city-weather-checker-lrnj.onrender.com/",
+    githubLink: "https://github.com/NasimRanaFeroz/Weather-Website",
   },
 ];
 

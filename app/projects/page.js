@@ -8,7 +8,7 @@ import { FiArrowRight, FiExternalLink, FiGithub } from "react-icons/fi";
 const portfolioList = [
   {
     id: 1,
-    image: "/images/projects/fork.jpg",
+    image: "/images/projects/fork.png",
     title: "Fork & Friends",
     category: "Development",
     tags: ["Python", "Flask", "React", "D3.js", "DeepSeek API"],
@@ -30,8 +30,8 @@ const portfolioList = [
       "AI-powered mobile app for automated strabismus screening, patient management, and real-time diagnostic feedback.",
     client: "OptiHealth Innovators",
     completionDate: "January 2025",
-    liveLink: "https://github.com/OptiHealth-Innovators/StrabismusCareApp",
-    githubLink: "https://github.com/OptiHealth-Innovators/StrabismusCareApp",
+    liveLink: "https://github.com/orgs/StrabismusCare/repositories",
+    githubLink: "https://github.com/orgs/StrabismusCare/repositories",
     featured: false,
   },
   {
@@ -162,7 +162,7 @@ const ProjectCard = ({ project, index, isInView }) => {
           <div>Client: {project.client}</div>
           <div>{project.completionDate}</div>
         </div>
-        
+
         <div className="flex justify-between items-center">
           <motion.a
             href={project.liveLink || "#"}
@@ -173,7 +173,7 @@ const ProjectCard = ({ project, index, isInView }) => {
           >
             View Project <FiArrowRight className="ml-2" />
           </motion.a>
-          
+
           <div className="flex space-x-2">
             {project.githubLink && (
               <motion.a
