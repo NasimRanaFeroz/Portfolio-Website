@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+import { BackgroundBeamsWithCollision } from "@/components/ui/bg-beams";
 import Image from "next/image";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaGithub, FaFileDownload, FaLinkedin } from "react-icons/fa";
