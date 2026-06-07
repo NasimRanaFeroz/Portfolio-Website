@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { techStack } from "../const";
+import { techStack } from "../../data/techStack";
 
 export const FloatingTechBubbles = ({ isInView }) => {
   const [bubbleTechs, setBubbleTechs] = useState([]);
