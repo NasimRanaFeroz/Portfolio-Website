@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import {
   motion,
@@ -7,14 +7,50 @@ import {
   AnimatePresence,
 } from "framer-motion";
 
+const PARTICLE_CONFIGS = Array.from({ length: 6 }, (_, i) => ({
+  id: i,
+  x: Math.random() * 60 - 30,
+  y: Math.random() * -60,
+  scale: Math.random() * 0.6 + 0.2,
+  duration: Math.random() * 1 + 1,
+  delay: Math.random() * 0.3,
+  left: `${Math.random() * 100}%`,
+}));
+
+const overlayVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.3 } },
+};
+
 export const TechCard = ({ tech, index, isInView }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const spotlightX = useMotionTemplate`${mouseX}px`;
-  const spotlightY = useMotionTemplate`${mouseY}px`;
+  const spotlightBackground = useMotionTemplate`radial-gradient(circle at ${mouseX}px ${mouseY}px, ${tech.glowColor}, transparent 40%)`;
+
+  const staggerDelay = useMemo(() => {
+    const rowIndex = Math.floor(index / 5);
+    const colIndex = index % 5;
+    return rowIndex * 0.05 + colIndex * 0.05;
+  }, [index]);
+
+  const entranceVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0, y: 40 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.5,
+          delay: staggerDelay,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      },
+    }),
+    [staggerDelay],
+  );
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -22,26 +58,11 @@ export const TechCard = ({ tech, index, isInView }) => {
     mouseY.set(e.clientY - rect.top);
   };
 
-  const rowIndex = Math.floor(index / 5);
-  const colIndex = index % 5;
-  const staggerDelay = rowIndex * 0.05 + colIndex * 0.05;
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={
-        isInView
-          ? {
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.6,
-                delay: staggerDelay,
-                ease: [0.22, 1, 0.36, 1],
-              },
-            }
-          : {}
-      }
+      variants={entranceVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
       className="perspective h-full"
     >
       <motion.div
@@ -50,28 +71,28 @@ export const TechCard = ({ tech, index, isInView }) => {
         onHoverEnd={() => setIsHovered(false)}
         whileHover={{
           scale: 1.05,
-          transition: {
-            type: "spring",
-            stiffness: 400,
-            damping: 17,
-          },
+          transition: { type: "spring", stiffness: 400, damping: 17 },
         }}
-        style={{
-          backgroundImage: isHovered
-            ? `radial-gradient(circle at ${spotlightX} ${spotlightY}, ${tech.glowColor}, transparent 40%)`
-            : "none",
-        }}
-        className={`relative flex items-center rounded-xl py-4 px-4 ${tech.bgColor} backdrop-blur-sm 
+        className={`relative flex items-center rounded-xl py-4 px-4 ${tech.bgColor} backdrop-blur-sm
           border border-opacity-20 ${tech.borderColor} shadow-lg transition-all duration-300
           hover:border-opacity-80 overflow-hidden group h-full`}
       >
+        <motion.div
+          className="absolute inset-0 pointer-events-none rounded-xl"
+          style={{
+            backgroundImage: spotlightBackground,
+            opacity: isHovered ? 1 : 0,
+          }}
+          transition={{ opacity: { duration: 0.2 } }}
+        />
+
         <AnimatePresence>
           {isHovered && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              variants={overlayVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
               className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-white/5 pointer-events-none"
             />
           )}
@@ -80,31 +101,23 @@ export const TechCard = ({ tech, index, isInView }) => {
         <AnimatePresence>
           {isHovered && (
             <>
-              {[...Array(6)].map((_, i) => (
+              {PARTICLE_CONFIGS.map((p) => (
                 <motion.div
-                  key={i}
-                  initial={{
-                    opacity: 0,
-                    x: 0,
-                    y: 0,
-                    scale: 0,
-                  }}
+                  key={p.id}
+                  initial={{ opacity: 0, x: 0, y: 0, scale: 0 }}
                   animate={{
                     opacity: [0, 0.8, 0],
-                    x: Math.random() * 60 - 30,
-                    y: Math.random() * -60,
-                    scale: Math.random() * 0.6 + 0.2,
+                    x: p.x,
+                    y: p.y,
+                    scale: p.scale,
                   }}
                   transition={{
-                    duration: Math.random() * 1 + 1,
-                    delay: Math.random() * 0.3,
+                    duration: p.duration,
+                    delay: p.delay,
                     ease: "easeOut",
                   }}
                   className="absolute w-1 h-1 rounded-full bg-white pointer-events-none"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    bottom: "0%",
-                  }}
+                  style={{ left: p.left, bottom: "0%" }}
                 />
               ))}
             </>
@@ -112,10 +125,8 @@ export const TechCard = ({ tech, index, isInView }) => {
         </AnimatePresence>
 
         <motion.div
-          className={`flex-shrink-0 mr-4 w-14 h-14 rounded-lg flex items-center justify-center overflow-hidden ${
-            tech.iconBg || ""
-          } 
-            shadow-inner transition-transform duration-300`}
+          className={`flex-shrink-0 mr-4 w-14 h-14 rounded-lg flex items-center justify-center
+            overflow-hidden ${tech.iconBg || ""} shadow-inner transition-transform duration-300`}
           animate={
             isHovered
               ? { rotate: [0, -5, 5, 0], scale: 1.1 }

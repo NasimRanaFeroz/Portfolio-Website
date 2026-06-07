@@ -1,105 +1,68 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { FiArrowRight, FiExternalLink, FiGithub } from "react-icons/fi";
+import { portfolioList, categories, AI_TAGS } from "@/data/projects";
 
-const portfolioList = [
-  {
-    id: 1,
-    image: "/images/projects/fork.png",
-    title: "Fork & Friends",
-    category: "Development",
-    tags: ["Python", "Flask", "React", "D3.js", "DeepSeek API"],
-    description:
-      "An AI-powered analytics and recommendation platform leveraging large-scale Yelp data for business insights and personalized user suggestions.",
-    client: "Group Project",
-    completionDate: "March 2025",
-    liveLink: "https://fork-and-friends.onrender.com/",
-    githubLink: "https://github.com/NasimRanaFeroz/Fork-Friends_Front-End",
-    featured: true,
-  },
-  {
-    id: 2,
-    image: "/images/projects/mus.png",
-    title: "StrabismusCare",
-    category: "Development",
-    tags: ["React Native", "Node.js", "Flask", "PyTorch", "MongoDB"],
-    description:
-      "AI-powered mobile app for automated strabismus screening, patient management, and real-time diagnostic feedback.",
-    client: "OptiHealth Innovators",
-    completionDate: "January 2025",
-    liveLink: "https://github.com/orgs/StrabismusCare/repositories",
-    githubLink: "https://github.com/orgs/StrabismusCare/repositories",
-    featured: false,
-  },
-  {
-    id: 3,
-    image: "/images/projects/finance.jpg",
-    title: "AI-Powered Financial Dashboard",
-    category: "Development",
-    tags: ["React", "Node.js", "Express", "MongoDB", "AI/ML"],
-    description:
-      "A smart financial dashboard leveraging AI for expense tracking, budgeting insights, and personalized financial recommendations.",
-    client: "Personal Project",
-    completionDate: "December 2024",
-    liveLink:
-      "https://github.com/NasimRanaFeroz/AI-powered-financial-dashboard",
-    githubLink:
-      "https://github.com/NasimRanaFeroz/AI-powered-financial-dashboard",
-    featured: false,
-  },
-  {
-    id: 4,
-    image: "/images/projects/ecom.jpg",
-    title: "Urban Closet",
-    category: "Development",
-    tags: ["MERN Stack", "Redux", "Stripe", "MongoDB", "Node.js"],
-    description:
-      "A modern e-commerce platform featuring seamless user authentication, secure payments, and a dynamic product catalog.",
-    client: "Urban Closet",
-    completionDate: "October 2024",
-    liveLink: "https://github.com/mdnezam-uddin/urban-closet-fe",
-    githubLink: "https://github.com/mdnezam-uddin/urban-closet-fe",
-    featured: false,
-  },
-  {
-    id: 5,
-    image: "/images/projects/weather.jpg",
-    title: "City Weather Checker",
-    category: "Development",
-    tags: ["Python", "Flask", "OpenWeather API", "HTML", "CSS"],
-    description:
-      "A lightweight web application that provides real-time weather updates for cities worldwide using OpenWeather API.",
-    client: "Personal Project",
-    completionDate: "March 2024",
-    liveLink: "https://city-weather-checker-lrnj.onrender.com/",
-    githubLink: "https://github.com/NasimRanaFeroz/Weather-Website",
-    featured: false,
-  },
-];
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: i * 0.1,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+  exit: { opacity: 0, scale: 0.95 },
+};
 
-const categories = [
-  "All",
-  ...new Set(portfolioList.map((item) => item.category)),
-];
+const SearchIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-5 w-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+    />
+  </svg>
+);
 
-const ProjectCard = ({ project, index, isInView }) => {
+const EmptyIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-12 w-12 text-slate-400"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
+  </svg>
+);
+
+const ProjectCard = ({ project, index }) => {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 50 }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        transition: {
-          duration: 0.6,
-          delay: index * 0.1,
-          ease: [0.22, 1, 0.36, 1],
-        },
-      }}
-      exit={{ opacity: 0, scale: 0.95 }}
+      custom={index}
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
       className={`bg-gradient-to-b from-slate-800/90 to-slate-900/90 rounded-xl overflow-hidden border border-slate-700/30 shadow-xl group ${
         project.featured ? "md:col-span-2" : ""
       }`}
@@ -128,10 +91,15 @@ const ProjectCard = ({ project, index, isInView }) => {
           </div>
         )}
 
-        <div className="absolute top-4 left-4 z-20">
-          <span className="px-3 py-1 text-xs font-medium rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
-            {project.category}
-          </span>
+        <div className="absolute top-4 left-4 z-20 flex gap-2">
+          {project.category.map((cat) => (
+            <span
+              key={cat}
+              className="px-3 py-1 text-xs font-medium rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30"
+            >
+              {cat}
+            </span>
+          ))}
         </div>
       </div>
 
@@ -148,9 +116,9 @@ const ProjectCard = ({ project, index, isInView }) => {
         </p>
 
         <div className="flex flex-wrap gap-2 mb-5">
-          {project.tags.slice(0, 5).map((tag, i) => (
+          {project.tags.slice(0, 5).map((tag) => (
             <span
-              key={i}
+              key={tag}
               className="text-xs px-2 py-1 rounded bg-slate-700/50 text-slate-300 border border-slate-600/30"
             >
               {tag}
@@ -206,32 +174,49 @@ const ProjectCard = ({ project, index, isInView }) => {
   );
 };
 
+const TOTAL_PROJECTS = portfolioList.length;
+const WEB_PROJECTS = portfolioList.filter((p) =>
+  p.category.includes("Web"),
+).length;
+const AI_PROJECTS = portfolioList.filter((p) =>
+  p.category.includes("AI"),
+).length;
+const MOBILE_PROJECTS = portfolioList.filter((p) =>
+  p.category.includes("Mobile"),
+).length;
+
+const STATS = [
+  { value: TOTAL_PROJECTS, label: "Total Projects" },
+  { value: WEB_PROJECTS, label: "Web" },
+  { value: AI_PROJECTS, label: "AI" },
+  { value: MOBILE_PROJECTS, label: "Mobile" },
+];
+
 const ProjectsPage = () => {
   const [filter, setFilter] = useState("All");
-  const [filteredProjects, setFilteredProjects] = useState(portfolioList);
   const [searchQuery, setSearchQuery] = useState("");
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  useInView(ref, { once: true, amount: 0.1 });
 
-  useEffect(() => {
+  const filteredProjects = useMemo(() => {
     let result = portfolioList;
 
     if (filter !== "All") {
-      result = result.filter((project) => project.category === filter);
+      result = result.filter((p) => p.category.includes(filter));
     }
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       result = result.filter(
-        (project) =>
-          project.title.toLowerCase().includes(query) ||
-          project.description.toLowerCase().includes(query) ||
-          project.tags.some((tag) => tag.toLowerCase().includes(query)) ||
-          project.category.toLowerCase().includes(query)
+        (p) =>
+          p.title.toLowerCase().includes(query) ||
+          p.description.toLowerCase().includes(query) ||
+          p.tags.some((tag) => tag.toLowerCase().includes(query)) ||
+          p.category.some((cat) => cat.toLowerCase().includes(query)),
       );
     }
 
-    setFilteredProjects(result);
+    return result;
   }, [filter, searchQuery]);
 
   return (
@@ -275,20 +260,7 @@ const ProjectsPage = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-5 py-4 pl-12 rounded-full bg-slate-800/70 border border-slate-700/50 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
               />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+              <SearchIcon />
             </div>
           </motion.div>
         </div>
@@ -325,20 +297,7 @@ const ProjectsPage = () => {
                 className="text-center py-20"
               >
                 <div className="inline-block p-6 rounded-full bg-slate-800/70 mb-6">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-12 w-12 text-slate-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+                  <EmptyIcon />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">
                   No Projects Found
@@ -359,7 +318,6 @@ const ProjectsPage = () => {
                       key={project.id}
                       project={project}
                       index={index}
-                      isInView={isInView}
                     />
                   ))}
                 </AnimatePresence>
@@ -373,43 +331,15 @@ const ProjectsPage = () => {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
           >
-            <div className="bg-slate-800/50 rounded-xl p-6 text-center border border-slate-700/30">
-              <h4 className="text-3xl font-bold text-white mb-1">
-                {portfolioList.length}
-              </h4>
-              <p className="text-slate-400 text-sm">Total Projects</p>
-            </div>
-
-            <div className="bg-slate-800/50 rounded-xl p-6 text-center border border-slate-700/30">
-              <h4 className="text-3xl font-bold text-white mb-1">
-                {
-                  portfolioList.filter((p) => p.category === "Development")
-                    .length
-                }
-              </h4>
-              <p className="text-slate-400 text-sm">Development</p>
-            </div>
-
-            <div className="bg-slate-800/50 rounded-xl p-6 text-center border border-slate-700/30">
-              <h4 className="text-3xl font-bold text-white mb-1">
-                {
-                  portfolioList.filter(
-                    (p) =>
-                      p.tags.includes("AI/ML") ||
-                      p.tags.includes("DeepSeek API") ||
-                      p.tags.includes("PyTorch")
-                  ).length
-                }
-              </h4>
-              <p className="text-slate-400 text-sm">AI Projects</p>
-            </div>
-
-            <div className="bg-slate-800/50 rounded-xl p-6 text-center border border-slate-700/30">
-              <h4 className="text-3xl font-bold text-white mb-1">
-                {portfolioList.filter((p) => p.featured).length}
-              </h4>
-              <p className="text-slate-400 text-sm">Featured</p>
-            </div>
+            {STATS.map(({ value, label }) => (
+              <div
+                key={label}
+                className="bg-slate-800/50 rounded-xl p-6 text-center border border-slate-700/30"
+              >
+                <h4 className="text-3xl font-bold text-white mb-1">{value}</h4>
+                <p className="text-slate-400 text-sm">{label}</p>
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>

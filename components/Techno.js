@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { TechCard } from "./ui/TechCard";
 import { FloatingTechBubbles } from "./ui/FloatingBubbles";
@@ -20,26 +20,14 @@ const headingVariants = {
   visible: { y: 0, opacity: 1, transition: { duration: 0.5, delay: 0.2 } },
 };
 
-const getCategoryVariants = (index) => ({
+const categoryVariants = techStack.map((_, index) => ({
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: 0.3 + index * 0.1 },
+    transition: { duration: 0.5, delay: 0.2 + index * 0.08 },
   },
-});
-
-const pulseVariants = {
-  animate: {
-    scale: [1, 1.2, 1],
-    opacity: [0.7, 1, 0.7],
-    boxShadow: [
-      "0 0 0 0 rgba(74, 222, 128, 0.4)",
-      "0 0 0 4px rgba(74, 222, 128, 0.2)",
-      "0 0 0 0 rgba(74, 222, 128, 0.4)",
-    ],
-  },
-};
+}));
 
 const Techno = () => {
   const ref = useRef(null);
@@ -47,12 +35,9 @@ const Techno = () => {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <motion.div
-      className="bg-gradient-to-b from-[#0b1727] to-[#0f2136] py-12 md:py-20 relative overflow-hidden"
-      variants={sectionVariants}
-      initial="hidden"
-      animate="visible"
+    <div
       ref={ref}
+      className="bg-gradient-to-b from-[#0b1727] to-[#0f2136] py-12 md:py-20 relative overflow-hidden"
     >
       <FloatingTechBubbles isInView={isInView} />
 
@@ -78,10 +63,7 @@ const Techno = () => {
             Technologies & Tools
           </motion.h2>
 
-          <p
-            className="mt-3 text-base md:text-lg text-gray-300 max-w-3xl mx-auto
-                      opacity-0 animate-lcp-fade"
-          >
+          <p className="mt-3 text-base md:text-lg text-gray-300 max-w-3xl mx-auto opacity-0 animate-lcp-fade">
             The technologies and frameworks I specialize in for building modern,
             scalable applications
           </p>
@@ -92,7 +74,7 @@ const Techno = () => {
             <motion.div
               key={category.title}
               className="space-y-6"
-              variants={getCategoryVariants(categoryIndex)}
+              variants={categoryVariants[categoryIndex]}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
             >
@@ -113,31 +95,8 @@ const Techno = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          className="mt-14 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.8 }}
-        >
-          <motion.div
-            className="inline-flex items-center px-5 py-2.5 rounded-full bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 shadow-lg"
-            whileHover={{ scale: 1.03 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <motion.div
-              className="w-2.5 h-2.5 rounded-full bg-green-400 mr-3"
-              variants={pulseVariants}
-              animate="animate"
-              transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
-            />
-            <p className="text-sm text-gray-200">
-              Actively using these technologies in production
-            </p>
-          </motion.div>
-        </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
