@@ -53,7 +53,7 @@ export const workExperience = [
   {
     company: "Papalazius Mercantile Inc: Papalazius Books",
     position: "Software Developer Intern",
-    period: "December 2024 - February 2025",
+    period: "November 2024 - February 2025",
     location: "Remote",
     website: "https://papalaziusbooks.com/",
     description:

@@ -49,7 +49,7 @@ export const TechCard = ({ tech, index, isInView }) => {
         },
       },
     }),
-    [staggerDelay],
+    [staggerDelay]
   );
 
   const handleMouseMove = (e) => {
@@ -73,9 +73,14 @@ export const TechCard = ({ tech, index, isInView }) => {
           scale: 1.05,
           transition: { type: "spring", stiffness: 400, damping: 17 },
         }}
-        className={`relative flex items-center rounded-xl py-4 px-4 ${tech.bgColor} backdrop-blur-sm
-          border border-opacity-20 ${tech.borderColor} shadow-lg transition-all duration-300
-          hover:border-opacity-80 overflow-hidden group h-full`}
+        className="relative flex items-center rounded-xl py-4 px-4 backdrop-blur-sm border shadow-lg overflow-hidden group h-full"
+        style={{
+          backgroundColor: tech.bgColor,
+          borderColor: tech.borderColor,
+          boxShadow: isHovered
+            ? `0 0 20px 2px ${tech.glowColor}, 0 4px 24px rgba(0,0,0,0.3)`
+            : "0 4px 24px rgba(0,0,0,0.2)",
+        }}
       >
         <motion.div
           className="absolute inset-0 pointer-events-none rounded-xl"
@@ -99,34 +104,30 @@ export const TechCard = ({ tech, index, isInView }) => {
         </AnimatePresence>
 
         <AnimatePresence>
-          {isHovered && (
-            <>
-              {PARTICLE_CONFIGS.map((p) => (
-                <motion.div
-                  key={p.id}
-                  initial={{ opacity: 0, x: 0, y: 0, scale: 0 }}
-                  animate={{
-                    opacity: [0, 0.8, 0],
-                    x: p.x,
-                    y: p.y,
-                    scale: p.scale,
-                  }}
-                  transition={{
-                    duration: p.duration,
-                    delay: p.delay,
-                    ease: "easeOut",
-                  }}
-                  className="absolute w-1 h-1 rounded-full bg-white pointer-events-none"
-                  style={{ left: p.left, bottom: "0%" }}
-                />
-              ))}
-            </>
-          )}
+          {isHovered &&
+            PARTICLE_CONFIGS.map((p) => (
+              <motion.div
+                key={p.id}
+                initial={{ opacity: 0, x: 0, y: 0, scale: 0 }}
+                animate={{
+                  opacity: [0, 0.8, 0],
+                  x: p.x,
+                  y: p.y,
+                  scale: p.scale,
+                }}
+                transition={{
+                  duration: p.duration,
+                  delay: p.delay,
+                  ease: "easeOut",
+                }}
+                className="absolute w-1 h-1 rounded-full bg-white pointer-events-none"
+                style={{ left: p.left, bottom: "0%" }}
+              />
+            ))}
         </AnimatePresence>
 
         <motion.div
-          className={`flex-shrink-0 mr-4 w-14 h-14 rounded-lg flex items-center justify-center
-            overflow-hidden ${tech.iconBg || ""} shadow-inner transition-transform duration-300`}
+          className={`flex-shrink-0 mr-4 w-14 h-14 rounded-lg flex items-center justify-center overflow-hidden shadow-inner ${tech.iconBg || ""}`}
           animate={
             isHovered
               ? { rotate: [0, -5, 5, 0], scale: 1.1 }
@@ -160,7 +161,7 @@ export const TechCard = ({ tech, index, isInView }) => {
           </motion.p>
 
           <motion.p
-            className="text-xs text-gray-400"
+            className="text-xs"
             animate={
               isHovered
                 ? { x: 3, color: "#cbd5e1" }
